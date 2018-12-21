@@ -64,7 +64,7 @@ document.onkeyup = function(event) {
 
 
   // letter is not in word
-  if (currentWord.indexOf(letterGuess) === -1 ) {
+  if (currentWordArray.indexOf(letterGuess) === -1 ) {
     // letter has not been guessed before
     if (guessedLetters.indexOf(letterGuess) === -1) {
       console.log("Incorrect guess!")
@@ -75,11 +75,7 @@ document.onkeyup = function(event) {
       console.log("You already guessed this letter!");
     }
     // letter is in word
-  } else if (currentWord.indexOf(letterGuess) !== -1 ) {
-    // word is complete
-
-    // push to correct letter and guessed letter queues
-    if (currentWordArray.indexOf(letterGuess) !== -1) {
+  } else if (currentWordArray.indexOf(letterGuess) !== -1 ) {
       guessedLetters.push(letterGuess);
       removeLetter(currentWordArray, letterGuess);
       console.log(currentWordArray);
@@ -87,7 +83,6 @@ document.onkeyup = function(event) {
         console.log("You guessed the word!");
       }
     }
-  }
 };
 
 // array of random words given theme
