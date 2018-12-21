@@ -18,7 +18,6 @@ var correctLetters = [];
 // }
 
 // function to check if arrays are equal
-
 var equalArray = function (arr1, arr2) {
   if(arr1.length !== arr2.length)
       return false;
@@ -29,11 +28,27 @@ var equalArray = function (arr1, arr2) {
   return true;
 }
 
+// function to check if array is empty
 var emptyArray = function(arr1) {
-  if (array === undefined || array.length == 0) {
+  if (arr1 === undefined || arr1.length == 0) {
     return true;
   }
 }
+
+// function to remove specified letter from array
+var removeLetter = function removeA(arr) {
+  var what, a = arguments, L = a.length, ax;
+  while (L > 1 && arr.length) {
+      what = a[--L];
+      while ((ax= arr.indexOf(what)) !== -1) {
+          arr.splice(ax, 1);
+      }
+  }
+  return arr;
+}
+
+
+
 
 var currentWord = "hello"
 var currentWordArray = []
@@ -64,11 +79,11 @@ document.onkeyup = function(event) {
     // word is complete
 
     // push to correct letter and guessed letter queues
-    if (correctLetters.indexOf(letterGuess) === -1) {
+    if (currentWordArray.indexOf(letterGuess) !== -1) {
       guessedLetters.push(letterGuess);
-      correctLetters.push(letterGuess);
-      correctLetters.sort();
-      if (equalArray(currentWordArray, correctLetters)) {
+      removeLetter(currentWordArray, letterGuess);
+      console.log(currentWordArray);
+      if (emptyArray(currentWordArray)) {
         console.log("You guessed the word!");
       }
     }
