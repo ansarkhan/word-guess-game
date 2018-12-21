@@ -17,12 +17,36 @@ var correctLetters = [];
 //   console.log('hello')
 // }
 
+// function to check if arrays are equal
+
+var equalArray = function (arr1, arr2) {
+  if(arr1.length !== arr2.length)
+      return false;
+  for(var i = arr1.length; i--;) {
+      if(arr1[i] !== arr2[i])
+          return false;
+  }
+  return true;
+}
+
+var emptyArray = function(arr1) {
+  if (array === undefined || array.length == 0) {
+    return true;
+  }
+}
+
+var currentWord = "hello"
+var currentWordArray = []
+for (var i = 0; i < currentWord.length; i++) {
+  currentWordArray.push(currentWord.charAt(i));
+  currentWordArray.sort();
+}
+
 // Guess word
 document.onkeyup = function(event) {
   var letterGuess = event.key;
   console.log(letterGuess);
 
-  var currentWord = "hello"
 
   // letter is not in word
   if (currentWord.indexOf(letterGuess) === -1 ) {
@@ -43,25 +67,12 @@ document.onkeyup = function(event) {
     if (correctLetters.indexOf(letterGuess) === -1) {
       guessedLetters.push(letterGuess);
       correctLetters.push(letterGuess);
-      console.log(guessedLetters, correctLetters);
+      correctLetters.sort();
+      if (equalArray(currentWordArray, correctLetters)) {
+        console.log("You guessed the word!");
+      }
     }
   }
 };
 
 // array of random words given theme
-
-// for (var i = 0; i < currentWord.length; i++) {
-//   if (currentWord[i] == letterGuess) {
-//     if (correctLetters.indexOf(letterGuess === -1)) {
-//       correctLetters.push(currentWord[i]);
-//       console.log(correctLetters);
-
-
-
-  // record user key
-  // if word complete push to words_played queue
-  // if in word (index is not -1) show on screen indexOf
-  // if in guessed_letter array, ignore
-  // if neither, decrement guesses by 1, add to guessed_letter array
-
-// 
