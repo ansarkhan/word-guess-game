@@ -1,7 +1,7 @@
 // Global Info
 
 
-var words = ['word123', 'word1234', 'word123456'];
+var words = ['bell', 'bells', 'belled'];
 var wordsPlayed = [];
 var guesses = 10;
 var guessedLetters = [];
