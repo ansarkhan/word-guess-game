@@ -1,3 +1,17 @@
+<!-- letters.forEach(function (elem) {
+    // creating button using jquery
+    var letterBtn = $("<button>");
+
+    // assigning classes to the button
+    letterBtn.attr("class", "letter-button letter letter-button-color");
+    
+    // letterBtn.setAttribute("data-letter", elem);
+    letterBtn.attr("data-letter", elem);
+    letterBtn.text(elem);
+    $("#buttons").append(letterBtn);
+
+  }); -->
+
 <!DOCTYPE html>
 
 <head>
@@ -22,12 +36,31 @@
 
     <main class="container">
         <div class="row">
-            <div class="col-12">
-                <div id="blanks"></div>
-                <div id="guessed-letters">Guessed Letters: </div>
-
+            <div class="col-2">
+                <h5>Word to Guess:</h5>
+            </div>
+            <div class="col-10">
+                <div class="blanks"></div>
             </div>
         </div>
+        
+        <div class="row">
+            <div class="col-2">
+                <h5>Guessed letters:</h5>
+            </div>
+            <div class="col-10" id="guessed-letters">
+                
+            </div>
+        </div>
+
+        <div class="row">
+                <div class="col-2">
+                    <h5>Guesses remaining:</h5>
+                </div>
+                <div class="col-10" id="guesses">
+                    
+                </div>
+            </div>
 
     </main>
 

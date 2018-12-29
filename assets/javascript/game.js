@@ -17,15 +17,17 @@ for (var i = 0; i < currentWord.length; i++) {
   currentWordArray.sort();
 }
 
-// dashes for word
+// dashes for word 
 for (i=0; i < currentWordArray.length; i++) {
   var letterBtn = $("<button>");
-  letterBtn.addClass("btn-large");
+  letterBtn.addClass("btn-large blank-letter");
   letterBtn.attr("data-letter", currentWordArray[i]);
   letterBtn.text("---");
-  $("#blanks").append(letterBtn);
+  $(".blanks").append(letterBtn);
 
 }
+
+$("#guesses").text(guesses);
 
 
 // Pick a random word
@@ -79,14 +81,30 @@ document.onkeyup = function(event) {
       if (guessedLetters.indexOf(letterGuess) === -1) {
         console.log("Incorrect guess!")
         guessedLetters.push(letterGuess);
+        $("#guessed-letters").text(guessedLetters);
         guesses--;
+        // $("#guesses").text(guesses);
       // letter was already guessed
       } else {
         console.log("You already guessed this letter!");
       }
       // letter is in word
     } else if (currentWordArray.indexOf(letterGuess) !== -1 ) {
+        // show the letter on screen
+      
+
+        var blankShow = document.getElementsByClassName("blank-letter")
+        for (i=0; i<blankShow.length; i++) {
+          // var blankShowLetter = blankShow[i].getAttribute("data-letter");
+          // console.log(blankShowLetter)
+          if (letterGuess === blankShow[i].getAttribute("data-letter")) {
+            blankShow[0].replaceWith(letterGuess);
+          }
+        }
+
+        // push letter to correct arrays
         guessedLetters.push(letterGuess);
+        $("#guessed-letters").text(guessedLetters);
         removeLetter(currentWordArray, letterGuess);
         console.log(currentWordArray);
         if (emptyArray(currentWordArray)) {
@@ -108,6 +126,17 @@ document.onkeyup = function(event) {
     console.log("Not a letter!")
   }
 
-};
+}
+
+// var x = document.getElementsByClassName("blank-letter")[0].getAttribute("data-letter");
+// var blankx = document.getElementsByClassName("blank-letter")
+// for (i=0; i < blankx.length; i++) {
+//   y = blankx[i].getAttribute("data-letter");
+//   console.log(y);
+// }
+// blankLetter = blankShow.attr("data-letter")
+// for (x=0;x<blankShow.length;x++) {
+//   console.log(blankLetter);
+// }
 
 // array of random words given theme
