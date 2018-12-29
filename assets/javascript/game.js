@@ -1,17 +1,14 @@
 // Global Info
 
 
-var words = ['bells'];
-var wordsPlayed = [];
+var words = ['hello', 'world','bye','goodbye'];
 var guesses = 10;
 var guessedLetters = [];
-var testWord = "bye"
-var correctLetters = [];
 var currentWord = words[Math.floor(Math.random() * words.length)];
 var currentWordArray = []
 var allLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
-
+// making array out of current word
 for (var i = 0; i < currentWord.length; i++) {
   currentWordArray.push(currentWord.charAt(i));
 }
@@ -21,15 +18,12 @@ for (i=0; i < currentWordArray.length; i++) {
   var letterBtn = $("<button>");
   letterBtn.addClass("btn-large blank-letter");
   letterBtn.attr("data-letter", currentWordArray[i]);
-  letterBtn.text("---");
+  letterBtn.text("-");
   $(".blanks").append(letterBtn);
+  }
 
-}
-
+// showing text for remaining guesses
 $("#guesses").text(guesses);
-
-
-// Pick a random word
 
 
 // function to check if array is empty
@@ -51,15 +45,10 @@ var removeLetter = function removeA(arr) {
   return arr;
 }
 
-
-
-
 // Guess word
 document.onkeyup = function(event) {
   var letterGuess = event.key;
   console.log(letterGuess);
-
-
 
   // letter is not in word
   if (allLetters.indexOf(letterGuess) !== -1) {
@@ -67,7 +56,7 @@ document.onkeyup = function(event) {
     if (currentWordArray.indexOf(letterGuess) === -1 ) {
       // letter has not been guessed before
       if (guessedLetters.indexOf(letterGuess) === -1) {
-        console.log("Incorrect guess!")
+        alert("Incorrect guess!")
         guessedLetters.push(letterGuess);
         $("#guessed-letters").text(guessedLetters);
         guesses--;
@@ -77,7 +66,7 @@ document.onkeyup = function(event) {
         }
       // letter was already guessed
       } else {
-        console.log("You already guessed this letter!");
+        alert("You already guessed this letter!");
       }
       // letter is in word
     } else if (currentWordArray.indexOf(letterGuess) !== -1 ) {
@@ -96,7 +85,7 @@ document.onkeyup = function(event) {
         removeLetter(currentWordArray, letterGuess);
         console.log(currentWordArray);
         if (emptyArray(currentWordArray)) {
-          console.log("You guessed the word!");
+          alert("You guessed the word! Refresh the page to get another word");
         }
       }
   
