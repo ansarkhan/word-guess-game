@@ -1,7 +1,7 @@
 // Global Info
 
 
-var words = ['bell', 'bells', 'belled'];
+var words = ['bells'];
 var wordsPlayed = [];
 var guesses = 10;
 var guessedLetters = [];
@@ -14,7 +14,6 @@ var allLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p
 
 for (var i = 0; i < currentWord.length; i++) {
   currentWordArray.push(currentWord.charAt(i));
-  currentWordArray.sort();
 }
 
 // dashes for word 
@@ -32,17 +31,6 @@ $("#guesses").text(guesses);
 
 // Pick a random word
 
-
-// function to check if arrays are equal
-var equalArray = function (arr1, arr2) {
-  if(arr1.length !== arr2.length)
-      return false;
-  for(var i = arr1.length; i--;) {
-      if(arr1[i] !== arr2[i])
-          return false;
-  }
-  return true;
-}
 
 // function to check if array is empty
 var emptyArray = function(arr1) {
@@ -83,7 +71,10 @@ document.onkeyup = function(event) {
         guessedLetters.push(letterGuess);
         $("#guessed-letters").text(guessedLetters);
         guesses--;
-        // $("#guesses").text(guesses);
+        $("#guesses").text(guesses);
+        if (guesses === 0) {
+          alert("Game over!");
+        }
       // letter was already guessed
       } else {
         console.log("You already guessed this letter!");
@@ -91,15 +82,12 @@ document.onkeyup = function(event) {
       // letter is in word
     } else if (currentWordArray.indexOf(letterGuess) !== -1 ) {
         // show the letter on screen
-      
-
         var blankShow = document.getElementsByClassName("blank-letter")
         for (i=0; i<blankShow.length; i++) {
-          // var blankShowLetter = blankShow[i].getAttribute("data-letter");
-          // console.log(blankShowLetter)
-          if (letterGuess === blankShow[i].getAttribute("data-letter")) {
-            blankShow[0].replaceWith(letterGuess);
+          while (letterGuess === blankShow[i].getAttribute("data-letter")) {
+            blankShow[i].replaceWith(letterGuess);
           }
+
         }
 
         // push letter to correct arrays
@@ -112,31 +100,8 @@ document.onkeyup = function(event) {
         }
       }
   
-    // guessed letters printing
-
-    // for (i=0; i < guessedLetters.length; i++) {
-    //   var letterP = $("<button>");
-    //   letterP.addClass("btn-large");
-    // }
-    // // letterP.attr("data-letter", guessedLetters[i]);
-    // // letterP.text(guessedLetters[i]);
-    // // $("#guessed-letters").append(letterP);
-
-  } else {
+   else {
     console.log("Not a letter!")
+    }
   }
-
 }
-
-// var x = document.getElementsByClassName("blank-letter")[0].getAttribute("data-letter");
-// var blankx = document.getElementsByClassName("blank-letter")
-// for (i=0; i < blankx.length; i++) {
-//   y = blankx[i].getAttribute("data-letter");
-//   console.log(y);
-// }
-// blankLetter = blankShow.attr("data-letter")
-// for (x=0;x<blankShow.length;x++) {
-//   console.log(blankLetter);
-// }
-
-// array of random words given theme
